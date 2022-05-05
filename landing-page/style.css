@@ -1,3 +1,4 @@
+/* ======== GLOBAL ========= */
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +12,12 @@
   --paragraph: hsl(210, 9%, 31%);
   --brand-beige: hsl(39, 100%, 97%);
   --brand-light: hsl(148, 23%, 89%);
+  --background-light: hsl(180, 14%, 97%);
   --nav-height: 7.2rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -25,6 +31,7 @@ body {
   font-size: 1.6rem;
   text-align: center;
   overflow: overlay;
+  background-color: var(--background-light);
 }
 
 .wrapper {
@@ -33,98 +40,46 @@ body {
   padding-inline: 2.4rem;
 }
 
+img{
+  max-width: 100%;
+}
+
 ul {
   list-style: none;
 }
 
-/* ====== HEADER ====== */
-header {
-  margin-top: calc(4.1rem + var(--nav-height));
+section {
+  padding-block: 10rem;
 }
 
-header img {
-  display: block;
-  margin-inline: auto;
-  object-position: 0 2rem;
-  width: 26.4rem;
-}
-
-header::before {
-  content: "";
-  width: 100%;
-  height: calc(108rem + var(--nav-height));
-  background-color: var(--brand-light);
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
-header h4 {
+section header h4 {
   font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
   color: var(--primary-color);
   margin-bottom: 1.6rem;
 }
 
-header h1 {
+section header h2 {
+  font-size: 3rem;
+  line-height: 3.9rem;
+  color: var(--headline);
+}
+
+section header h1 {
   font-size: 3.4rem;
   color: var(--headline);
   line-height: 130%;
   margin-bottom: 2.4rem;
 }
 
-header p {
-  font-size: 1.8rem;
-  line-height: 150%;
+section .content p{
   font-weight: 400;
-  color: var(--paragraph);
-  margin-bottom: 3.2rem;
-}
-
-header button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.6rem;
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 4rem;
-  margin-bottom: 6rem;
-  margin-inline: auto;
-  height: 6.2rem;
-  width: 26.3rem;
-  color: white;
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-header .stats {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6rem;
-  width: 32.7rem;
-  height: 47rem;
-  margin-inline: auto;
-  padding-block: 4rem;
-  background-color: var(--brand-beige);
-  border: 1px solid var(--brand-light);
-  border-radius: 0.6rem;
-}
-
-header .stat h3 {
-  font-size: 4.8rem;
-  color: var(--headline);
-  line-height: 130%;
-  margin-bottom: 0.4rem;
-}
-
-header .stat p {
-  margin: 0;
-  color: var(--primary-color);
+  font-size: 1.6rem;
   line-height: 150%;
+  color: var(--paragraph);
 }
 
 /* ====== NAV ====== */
@@ -133,9 +88,11 @@ nav {
   padding: 1.6rem 2.4rem;
   position: fixed;
   top: 0;
+  width: 100vw;
   height: var(--nav-height);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 100;
 }
 
 nav .wrapper {
@@ -143,12 +100,12 @@ nav .wrapper {
   align-items: center;
   justify-content: space-between;
 }
+
 nav.scroll {
   background: var(--primary-color);
-  width: 100vw;
 }
 
-nav.scroll svg:nth-child(1) path {
+nav.scroll .logo path {
   fill: white;
 }
 
@@ -156,18 +113,19 @@ nav.scroll button path {
   stroke: white;
 }
 
-nav button{
-    background: none;
-    border: none;
-    cursor: pointer;
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
+
 /* ====== MENU EXPANDED ====== */
 body.menu-expanded {
   overflow: hidden;
 }
 
 body.menu-expanded > :not(nav) {
-  display: none;
+  visibility: hidden;
 }
 
 .menu,
@@ -183,6 +141,10 @@ body.menu-expanded .close-menu {
   visibility: visible;
 }
 
+.menu {
+  transform: translateY(100%);
+}
+
 body.menu-expanded .menu {
   position: fixed;
   top: 0;
@@ -191,10 +153,8 @@ body.menu-expanded .menu {
   width: 100vw;
   height: 100vh;
   padding-top: var(--nav-height);
-}
-
-body.menu-expanded nav {
-  position: relative;
+  transition: transform 300ms;
+  transform: translateY(0%);
 }
 
 .menu ul:nth-child(1) {
@@ -245,4 +205,119 @@ body.menu-expanded .logo path {
 
 body.menu-expanded button path {
   stroke: white;
+}
+
+/* ====== HEADER ====== */
+#home {
+  padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home img {
+  display: block;
+  margin-inline: auto;
+  object-position: 0 2rem;
+  width: 26.4rem;
+}
+
+#home::before {
+  content: "";
+  width: 100%;
+  height: calc(108rem + var(--nav-height));
+  background-color: var(--brand-light);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#home p {
+  font-size: 1.8rem;
+  line-height: 150%;
+  font-weight: 400;
+  color: var(--paragraph);
+  margin-bottom: 3.2rem;
+}
+
+#home button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4rem;
+  margin-bottom: 6rem;
+  margin-inline: auto;
+  height: 6.2rem;
+  width: 26.3rem;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+#home .stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6rem;
+  width: 32.7rem;
+  height: 47rem;
+  margin-inline: auto;
+  padding-block: 4rem;
+  background-color: var(--brand-beige);
+  border: 1px solid var(--brand-light);
+  border-radius: 0.6rem;
+}
+
+#home .stat h3 {
+  font-size: 4.8rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 0.4rem;
+}
+
+#home .stat p {
+  margin: 0;
+  color: var(--primary-color);
+  line-height: 150%;
+}
+
+/* ====== SERVICES ====== */
+#services h2{
+  margin-bottom: 6rem;
+}
+
+#services .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+#services .card {
+  padding: 2.4rem;
+  text-align: left;
+  background-color: white;
+  border: 1px solid var(--brand-light);
+  border-radius: 0.6rem;
+}
+
+#services .card h3 {
+  margin-block: 1.6rem;
+}
+
+/* ====== ABOUT ====== */
+#about{
+  text-align: left;
+  background-color:var(--brand-beige);
+}
+
+#about header h2{
+  margin-bottom: 2.4rem;
+}
+
+#about .content p{
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
 }
