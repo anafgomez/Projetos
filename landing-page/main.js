@@ -1,4 +1,9 @@
 const onScroll = () => {
+  showNavOnScroll();
+  showBackToTopButtonOnScroll();
+};
+
+const showNavOnScroll = () => {
   if (scrollY > 0) {
     navigation.classList.add("scroll");
   } else {
@@ -6,6 +11,13 @@ const onScroll = () => {
   }
 };
 
+const showBackToTopButtonOnScroll = () => {
+  if (scrollY > 0) {
+    backToTopButton.classList.add("show");
+  } else {
+    backToTopButton.classList.remove("show");
+  }
+};
 const openMenu = () => {
   document.body.classList.add("menu-expanded");
 };
